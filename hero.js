@@ -4,7 +4,7 @@ const heroInit = bg.appendChild(divHero);
 heroInit.setAttribute("class", "hero");
 heroInit.setAttribute(
     "style",
-    `position:absolute; bottom:0; left:50%; 
+    `position:absolute; bottom:0%; left:50%; 
     background-image: url(./images/hero.png); width:35px; height:50px;
     background-repeat:no-repeat;`
 );

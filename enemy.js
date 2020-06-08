@@ -1,11 +1,6 @@
 const enemy = [];
-const enemyCount = 10;
+const enemyCount = 30;
 // const enemyDiv = document.createElement("div");
-
-for (let i = 0; i < enemyCount; i++) {
-    enemy[i] = document.createElement("div");
-}
-console.log(enemy);
 
 // 적 떨어지는 속도
 const RandomSpeed = (min, max) => {
@@ -21,7 +16,7 @@ class Enemy {
         let randomPos = Math.floor(Math.random() * 755);
 
         // 적 생성
-        bg.appendChild(enemy[num]);
+        const enemyInit = bg.appendChild(enemy[num]);
         enemy[num].setAttribute("class", `emeny${num}`);
         enemy[num].setAttribute(
             "style",
@@ -36,7 +31,7 @@ class Enemy {
         // 적 드랍 & 제거
         const EnemyDrop = (num) => {
             let y = parseInt(enemy[num].style.bottom);
-            const randomSpeed = RandomSpeed(50, 100);
+            const randomSpeed = RandomSpeed(30, 80);
 
             const DropAndRemove = setInterval(() => {
                 y -= 2;
@@ -51,13 +46,13 @@ class Enemy {
                     // delay = Math.floor(getRandom(30, 100));
                     // console.log(randomPos, randomSpeed);
 
+                    
+
                     const removeEnemy = setTimeout(() => {
                         enemy[num].remove(enemy[num]);
                     }, 300);
                     // clearTimeout(removeEnemy);
                     clearInterval(DropAndRemove);
-
-                    // GameStart();
                 }
             }, randomSpeed);
         };
@@ -65,18 +60,20 @@ class Enemy {
     }
 }
 
-const GameStart = () => {
-    const enemy0 = new Enemy(0);
-    const enemy1 = new Enemy(1);
-    const enemy2 = new Enemy(2);
-    const enemy3 = new Enemy(3);
-    const enemy4 = new Enemy(4);
-    const enemy5 = new Enemy(5);
-    const enemy6 = new Enemy(6);
-    const enemy7 = new Enemy(7);
-    const enemy8 = new Enemy(8);
-    const enemy9 = new Enemy(9);    
-};
-// GameStart();
+// 적을 EnemyCount만큼 생성
+for (let i = 0; i < enemyCount; i++) {
+    enemy[i] = document.createElement("div");
+}
+console.log(enemy);
 
-// setInterval(GameStart,5000);
+const CreateEnemy = (count) => {
+    for (let i = 0; i < count; i++) {
+        new Enemy(i);
+    }
+};
+
+// 게임 시작
+const GameStart = () => {
+    CreateEnemy(enemyCount);
+};
+// setInterval(GameStart, 4000);
